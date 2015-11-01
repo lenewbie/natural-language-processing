@@ -22,10 +22,11 @@ object Tokenizer {
       if (remainingInput == "") tokens
       else {
         val potentialTokens = wordsList.filter(remainingInput.startsWith)
-          if(potentialTokens.isEmpty) throw new NoEnoughWordsToParse(s"Unable to parse ${remainingInput}")
-        else {
-            val nextToken =  potentialTokens.maxBy(_.length)
-            tokenize(removePrefix(remainingInput, nextToken), nextToken :: tokens)
+          if(potentialTokens.isEmpty)
+            throw new NoEnoughWordsToParse(s"Unable to parse ${remainingInput}")
+          else {
+              val nextToken =  potentialTokens.maxBy(_.length)
+              tokenize(removePrefix(remainingInput, nextToken), nextToken :: tokens)
           }
       }
     }
